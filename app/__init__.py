@@ -1,7 +1,7 @@
 from flask import Flask
-from app.routes import home, dashboard
 from app.db import init_db
 from app.utils import filters
+from app.routes import home, dashboard, api
 
 def create_app(test_config=None):
     app = Flask(__name__, static_url_path='/')
@@ -16,6 +16,7 @@ def create_app(test_config=None):
     def hello():
         return 'hello world'
     app.register_blueprint(home)
+    app.register_blueprint(api)
     app.register_blueprint(dashboard)
     init_db(app)
     return app
